@@ -1,0 +1,48 @@
+# coding: utf-8
+#チョコの分割 再チャレンジ採点結果      
+       
+input_line = input()
+s = input_line.rstrip().split(' ')
+row = int(s[0])
+col = int(s[1])
+
+matrix = []
+for i in range(row):
+    row_mat = input()
+    r_m = row_mat.rstrip().split(' ')
+    for j in range(col):
+        r_m[j]=int(r_m[j])
+    matrix.append(r_m)
+    
+keepA=[]
+
+for i in range(row):
+    for testtime in range(col-1):
+        bottom_sum = 0
+        front_sum = 0
+        for j in range(testtime+1,col):
+            bottom_sum = bottom_sum + matrix[i][j]
+        for k in range(0,testtime+1):
+            front_sum = front_sum + matrix[i][k]
+        if front_sum == bottom_sum:
+            keepA.append(testtime+1)
+            break
+            
+
+output = []
+for item in keepA:
+    if item >= col:
+        output = []
+    else:
+        out = "A"*item + "B"*(col-item) 
+        output.append(out)
+
+
+if output==[]:
+    print("No")
+else:
+    print("Yes")
+    for i in range(row):
+        print(output[i])
+        
+        
